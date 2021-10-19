@@ -3,37 +3,52 @@ require('dotenv').config();
 
 const pool = new Pool(
     {
-        database: 'olx',
         user: 'postgres',
         password: process.env.PSQL_PASSWORD,
-        port: '5432'
+        port: '5432',
+        database: 'olx_app'
     }
 )
 
 async function poolConnect(){
     try {
         const client = await pool.connect();
-        console.log(client);
         return client
     } catch (error) {
         console.log('POOL_CONNECTION_ERROR: ', error + ''); 
     }
 }
 
-poolConnect()
+class PG {
+    static async CreateUsersTable(){
+        try {
+            const client = await poolConnect();
 
-// class PG {
-//     constructor(){
-//         this.client = poolConnect();
-//     }
+            const users_table = await client.query(`CREATE TABLE users (
+                id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+                name VARCHAR(36) NOT NULL,
+                email VARCHAR UNIQUE NOT NULL,
+                password VARCHAR(64) NOT NULL,
+                verified BOOLEAN NOT NULL DEFAULT FALSE
+            )`);
 
-//     static async getAllUsers(){
-//         try {
-//             console.log(this.client); 
-//         } catch (error) {
-//             console.log('DB_GET_ALL_USERS_ERROR: ', error + '');
-//         }
-//     }
-// }
 
-// console.log(PG.getAllUsers());
+            console.log(users_table);
+        } catch (error) {
+            console.log('DB_CREATE_TABLE_ERROR: ', error + '');
+        }
+    }
+    static async GetAllUsers(){ 
+        try {
+            const client = await poolConnect();
+
+            const users = await client.query(`SELECT * FROM users`)
+
+            return users
+        } catch (error) {
+            console.log('DB_GET_ALL_USERS_ERROR: ', error + '');
+        }
+    }
+}
+
+console.log(PG.CreateUsersTable());
