@@ -1,0 +1,31 @@
+.formWrapper{
+    animation: fadeToLittleRight 1s;
+}
+
+#loginForm{
+    animation: fadeToRight 1s;
+}
+#registerForm{
+    animation: fadeToRight 1s;
+}
+
+@keyframes fadeToRight{
+    from{
+        opacity:  0;
+        transform: translateX(-40px);
+    }
+    to{
+        opacity:  1;
+        transform: translateX(0);
+    }
+}
+@keyframes fadeToLittleRight{
+    from{
+        opacity:  0;
+        transform: translateX(-20px);
+    }
+    to{
+        opacity:  1;
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('parts/head') %> 
+    <% var error %> 
+
+    <title>Olx Ro'yxatdan o'tish</title>
+</head>
+
+<body>
+    <section class="registerSection">
+        <div class="container-fluid">
+            <div class="formWrapper">
+
+                <form id="registerForm" method="POST" action="/users/register">
+                    <h2>Ro'yxatdan o'tish</h2>
+                    <% if(error) { %>
+                        <div class="alert alert-danger"><%= error %> </div>
+                    <% } %>  
+                    <div>
+                        <label for="">Ism (3-36)</label>
+                        <input type="text" name="name" required>
+                    </div>
+
+                    <div>
+                        <label for="">E-mail</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="">Parol (min 6)</label>
+                        <input class="passwordInput" type="password" name="password" required>
+                        <button class="eye" type="button"><i class="far fa-eye"></i></button>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="registerSubmit" type="submit">Akkaunt yaratish</button>
+
+                        <a href="/users/login">Kirish</a>
+                    </div>
+
+                </form>
+                <div class="logoDiv">
+                    <img class="logo" src="/img/OLX.svg" width="200px" height="200px" alt="" draggable="false">
+                    <span>Hush kelibsiz!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+    <script>
+        const eye = document.querySelector('.eye')
+        const passwordInput = document.querySelector('.passwordInput')
+        const far = document.querySelector('.far')
+
+
+        eye.addEventListener('click', event => {
+            if (far.classList.contains('fa-eye')) {
+                far.classList.remove('fa-eye')
+                far.classList.add('fa-eye-slash')
+
+
+            } else {
+                far.classList.remove('fa-eye-slash')
+                far.classList.add('fa-eye')
+            }
+            if (passwordInput.type === 'password') {
+
+                passwordInput.type = 'text'
+            } else {
+                passwordInput.type = 'password'
+            }
+        })
+    </script>
+</body>
+
+</html>

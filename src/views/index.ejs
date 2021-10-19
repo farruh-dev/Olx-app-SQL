@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('parts/head') %>
+    <% var categoryList %>
+    <% var adsList %>
+
+    <title>Olx</title>
+</head>
+
+<body>
+    <%- include('parts/nav') %>
+    <section id="categoriesSection">
+        <div class="container">
+            <div class="categoriesWrapper">
+                <h2 class="categoriesHeading">Kategoriyalar</h2>
+                <ul class="categoriesList">
+                    <% if (categoryList) { %>
+
+                    <% for (let category of categoryList) {%>
+                    <li class="categoryListItem">
+                        <a href="/category/<%= category._id %>">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <%- category.icon %>
+                            <span class="categoryName"><%= category.name %> </span>
+                        </a>
+                    </li>
+                    <% } %>
+
+                    <% } else { %>
+
+
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-baby-carriage"></i>
+                            <span class="categoryName">Bolalar dunyosi</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-key"></i>
+                            <span class="categoryName">Ko'chmas mulk</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-car"></i>
+                            <span class="categoryName">Transport</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-briefcase"></i>
+                            <span class="categoryName">Ish</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-paw"></i>
+                            <span class="categoryName">Hayvonlar</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-couch"></i>
+                            <span class="categoryName">Uy va bog'</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-mobile-alt"></i>
+                            <span class="categoryName">Elektronika</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-paint-roller"></i>
+                            <span class="categoryName">Biznes va xizmatlar</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-tshirt"></i>
+                            <span class="categoryName">Moda va stil</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-futbol"></i>
+                            <span class="categoryName">Xobbi, dam olish va sport</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-gift"></i>
+                            <span class="categoryName">Tekinga beraman</span>
+                        </a>
+                    </li>
+                    <li class="categoryListItem">
+                        <a href="">
+                            <!-- <img class="categoryImage" src="" alt="category"> -->
+                            <i class="fas fa-handshake"></i>
+                            <span class="categoryName">Ayirboshlash</span>
+                        </a>
+                    </li>
+                    <!-- <li class="categoryListItem">
+                        <a href="">
+                            <img class="categoryImage" src="" alt="category">
+                            <i class="fas fa-envelope-open-text"></i>
+                            <span class="categoryName">Qayta aloqa</span>
+                        </a>
+                    </li> -->
+                    <% } %>
+                </ul>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="productsSection">
+        <div class="container">
+            <h2 class="productsSectionHeading">PREMIUM E`LONLAR</h2>
+            <div class="productsList">
+
+                <% for (let ad of adsList) {%>
+                <div class="productItem">
+                    <div class="productImgDiv">
+                        <a href="/ads/<%= ad.slug %> ">
+                            <img src="/uploads/<%= ad.photos[0] %> " class="productImg"></img>
+                        </a>
+                    </div>
+                    <div class="productInfo">
+                        <div class="productNameDiv">
+                            <a href="/ads/<%= ad.slug %> ">
+                                <span class="productName"><%= ad.title %> </span>
+                                <div class="productNameUnderline"></div>
+                            </a>
+                        </div>
+                        <div class="locationAndTime">
+                            <span class="productLocation"><%= ad.location %> </span>
+                            <div class="d-block">
+                                <span class="productLocation"><%= ad.addedDate %> </span>
+                                <span class="productLocation"><%= ad.addedTime %> </span>
+                            </div>
+                        </div>
+                        <div class="productPriceDiv">
+                            <span class="productPrice"><%= ad.price %> <%= ad.currensy %> </span>
+                        </div>
+                        <div class="likeButtonDiv">
+                            <button class="likeButton">
+                                <i class="like far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+            </div>
+        </div>
+    </section>
+
+
+    <%- include('parts/footer') %>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+
+<script src="/js/like.js"></script>
+<script src="/js/search.js"></script>
+
+</body>
+
+</html>

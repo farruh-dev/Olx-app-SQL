@@ -1,0 +1,43 @@
+<% var user %> 
+
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navLogoDiv">
+
+            <a href="/">
+                <img class="navLogo" src="/img/OLX.svg" width="50" height="50" alt="" draggable="false">
+                OLX
+            </a>
+        </div>
+
+        <div class="searchForm">
+            <input type="search" class="searchInput" placeholder="Izlash">
+            <div class="resultList">  
+            </div>
+        </div>
+
+        <div class="navLinksDiv">
+            <ul class="navLinks">
+                <% if (user) { %>
+                    <li class="navLinkItem">
+                        <a href="/users/profile/my_profile" class="nav-link"><%= user.name%></a>
+                    </li>
+                    <li class="navLinkItem">
+                        <a href="/ads/add_ad" class="nav-link">E'lon berish</a>
+                    </li>
+                <% } else { %>
+                    <li class="navLinkItem">
+                        <a href="/" class="nav-link">Asosiy</a>
+                    </li>
+                    <li class="navLinkItem">
+                        <a href="/users/login" class="nav-link">Kirish</a>
+                    </li>
+                    <li class="navLinkItem">
+                        <a href="/users/register" class="nav-link">Ro'yxatdan o'tish</a>
+                    </li>
+                <% } %> 
+            </ul>
+        </div>
+    </div>
+
+</nav>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('parts/head') %> 
+    <% var message_start %> 
+    <% var message_end %> 
+    <% var email %> 
+    <% var button %> 
+
+    <title>Olx Ro'yxatdan o'tish</title>
+</head>
+
+<body>
+    <section class="registerSection">
+        <div class="container-fluid">
+            <div class="flex-column text-center formWrapper">
+                <div class="logoDiv">
+                    <!-- <img class="logo" src="/img/OLX.svg" width="200px" height="200px" alt="" draggable="false"> -->
+                    <span><%= message_start %> <a href="https://mail.google.com/"><%= email %></a> <%= message_end %></span>
+                </div>
+                <% if(button) { %>
+                    <a href="/users/profile" class="btnStyle">OK</a>
+                <% } %>  
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+
+</body>
+
+</html>

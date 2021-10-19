@@ -1,0 +1,38 @@
+{
+  "name": "olx-app",
+  "version": "1.0.0",
+  "description": "backend+frontend. With  mongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farruholimov/Olx-app.git"
+  },
+  "author": "Farrukh Olimov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farruholimov/Olx-app/issues"
+  },
+  "homepage": "https://github.com/farruholimov/Olx-app#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.1.2",
+    "mongoose": "^6.0.7",
+    "nodemailer": "^6.6.5",
+    "slugify": "^1.6.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}

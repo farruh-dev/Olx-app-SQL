@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('parts/head') %>
+    <% var error %>
+    <% var user %>
+    <% var results %>
+    <% var key %>
+
+    <title><%=  %> </title>
+</head>
+
+<body>
+    <%- include('parts/nav') %>
+
+    <section id="productsSection">
+        <div class="container">
+            <h2 class="productsSectionHeading"><%= key %> bo'yicha qidiruv natijalari </h2>
+            <div class="productsList">
+
+                <% for (let ad of results) {%>
+                <div class="productItem">
+                    <div class="productImgDiv">
+                        <a href="/ads/<%= ad.slug %> ">
+                            <img src="/uploads/<%= ad.photos[0] %> " class="productImg"></img>
+                        </a>
+                    </div>
+                    <div class="productInfo">
+                        <div class="productNameDiv">
+                            <a href="/ads/<%= ad.slug %> ">
+                                <span class="productName"><%= ad.title %> </span>
+                                <div class="productNameUnderline"></div>
+                            </a>
+                        </div>
+                        <div class="locationAndTime">
+                            <span class="productLocation"><%= ad.location %> </span>
+                            <div class="d-block">
+                                <span class="productLocation"><%= ad.addedDate %> </span>
+                                <span class="productLocation"><%= ad.addedTime %> </span>
+                            </div>
+                        </div>
+                        <div class="productPriceDiv">
+                            <span class="productPrice"><%= ad.price %> <%= ad.currensy %> </span>
+                        </div>
+                        <div class="likeButtonDiv">
+                            <button class="likeButton">
+                                <i class="like far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+            </div>
+        </div>
+    </section>
+
+
+    <script src="/js/like.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>

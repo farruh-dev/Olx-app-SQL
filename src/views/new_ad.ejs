@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('parts/head') %>
+    <script defer="" data-domain="dropzone.dev" src="https://plausible.io/js/plausible.js"></script>
+
+    <title>Olx Yangi e'lon</title>
+</head>
+
+<body>
+    <%- include('parts/nav') %>
+    <% var categoryList %>
+    <% var error %>
+
+    <section id="addNewSection">
+        <div class="container">
+            <form id="addNewForm" action="/ads/add_ad" method="POST" enctype="multipart/form-data">
+                <h2>Yangi e'lon qo'shish</h2>
+                <% if (error) {%>
+                <div class="alert alert-danger w-100"><%= error %> </div>
+                <% } %>
+                <div class="inputField">
+                    <label for="">Nomi</label>
+                    <input type="text" class="newAdNameInput" name="title" required>
+                </div>
+
+                <div class="inputField">
+                    <label for="">Manzil</label>
+                    <input type="text" class="newAdLocationInput" name="location">
+                </div>
+                <div class="priceOpts">
+                    <div class="inputField">
+                        <label for="">Narxi</label>
+                        <input type="number" class="newAdPriceInput" name="price" required>
+                    </div>
+                    <div class="selectField">
+                        <label for="">Valyuta</label>
+                        <select name="currensy" id="currensy" required>
+
+                            <option value="dollar" selected>dollar</option>
+                            <option value="so'm">so'm</option>
+                            <option value="yevro">yevro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="selectField">
+                    <label for="">Kategoriya</label>
+                    <select name="category" id="category" required>
+
+                        <% for (let category of categoryList) {%>
+                        <option value="<%= category._id %>"><%= category.name %> </option>
+                        <% } %>
+
+                    </select>
+                </div>
+                <div class="inputField">
+                    <label for="">Rasm(lar)</label>
+                    <input class="dropzone" id="my-dropzone" type="file" multiple accept="image/png, image/jpg, image/jpeg"
+                        name="photos">
+                    <!-- <input type="hidden" value="placeholder.png" name="placeholder"> -->
+                </div>
+                <div class="inputField">
+                    <label for="">Telefon raqam</label>
+                    <input style="font-family: sans-serif;" id="phone" type="tel" name="phone" placeholder="+998">
+                </div>
+
+
+                <div class="textareaField">
+                    <label for="">Ma'lumot</label>
+                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                </div>
+
+                <div class="buttonDiv">
+                    <button class="submitForm" type="submit">
+                        Joylashtirish
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+
+    <%- include('parts/footer') %>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+    <script src="/libraries/cleavejs/cleave.js"></script>
+    <script src="/libraries/cleavejs/cleave-phone.uz.js"></script>
+
+    <script>
+        const likeButton = document.querySelectorAll('.likeButton')
+        const phone = document.getElementById("phone");
+
+        const cleave = new Cleave(phone, {
+            phone: true,
+            phoneRegionCode: "UZ"
+        })
+
+        likeButton.forEach(btn => {
+            btn.addEventListener('click', event => {
+                let liekIcon = event.target.children[0]
+                console.log(liekIcon);
+                if (liekIcon.classList.contains('far')) {
+                    liekIcon.classList.remove('far')
+                    liekIcon.classList.add('fas')
+
+
+                } else {
+                    liekIcon.classList.remove('fas')
+                    liekIcon.classList.add('far')
+                }
+            })
+        })
+    </script>
+
+</body>
+
+</html>

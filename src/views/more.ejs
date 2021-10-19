@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('parts/head') %> 
+    <% var adsOne %> 
+
+    <title>Olx Btafsil</title>
+</head>
+
+<body>
+    <%- include('parts/nav') %>
+
+    <section class="moreSection">
+        <div class="container">
+            <% for(let photo of adsOne.photos ) {%>
+                <div class="moreImageDiv">
+                    <img src="/uploads/<%= photo %> " alt="" class="moreImage">
+                </div>
+            <% } %> 
+            <div class="productInfo">
+                <div class="productNameDiv">
+                        <span class="productName"><%= adsOne.title %> </span>
+                        <div class="productNameUnderline"></div>
+                        <div class="addedAt">
+                            <span class="addedDate"><%= adsOne.addedDate %></span>
+                            <span class="addedDate"><%= adsOne.addedTime %></span>
+                        </div>
+                        <div class="likeButtonDiv">
+                            <button class="likeButton">
+                                <i class="like far fa-heart"></i>
+                            </button>
+                        </div>
+                </div>
+                
+                <div class="productPriceDiv">
+                    <span class="productPrice"><%= adsOne.price %> <%= adsOne.currensy %></span>
+                </div>
+                <div class="categoryName">
+                    <span class="productCategory">Kategoriya: <%= adsOne.category_id.name %> </span>
+                </div>
+                <div class="locationAndTime">
+                    <span class="productLocation">Manzil: <%= adsOne.location %></span>
+                </div>
+                <div class="ownerDiv">
+                    <span class="ownerName">Egasi: <%= adsOne.owner_id.name %></span>
+                </div>
+                <div class="connectionDiv">
+                    <span class="ownerChatLink">Xabar yozish: <a href="/users/profile/<%= adsOne.owner_id._id %> "><%= adsOne.owner_id.name %></a></span>
+                    <span class="ownerPhone">Tel: <a href="tel:<%= adsOne.phone %> "><%= adsOne.phone %></a></span>
+                </div>
+                
+                <div class="descriptionDiv">
+                    <p class="description">
+                        <%= adsOne.description %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <%- include('parts/footer') %> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+
+    <script src="/js/like.js"></script>
+
+</body>
+
+</html>
