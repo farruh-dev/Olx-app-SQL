@@ -1,4 +1,5 @@
 const JWT = require("jsonwebtoken")
+require('dotenv').config()
 
 async function createToken(data){
     return JWT.sign(data, process.env.JWT_SECRET)

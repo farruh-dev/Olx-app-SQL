@@ -25,15 +25,13 @@ class PG {
             const client = await poolConnect();
 
             const users_table = await client.query(`CREATE TABLE users (
-                id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+                id UUID DEFAULT uuid_generate_v4() NOT NULL PRIMARY KEY,
                 name VARCHAR(36) NOT NULL,
                 email VARCHAR UNIQUE NOT NULL,
                 password VARCHAR(64) NOT NULL,
                 verified BOOLEAN NOT NULL DEFAULT FALSE
             )`);
 
-
-            console.log(users_table);
         } catch (error) {
             console.log('DB_CREATE_TABLE_ERROR: ', error + '');
         }

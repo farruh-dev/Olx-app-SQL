@@ -41,13 +41,16 @@ module.exports = class UserRouteController {
             })
 
             if (user) {
-                res.render('verify', {
-                    message_start: `Hurmatli ${user.name}, sizning `,
-                    email: user.email,
-                    message_end: `pochtangizga emailni tasdiqlash uchun link jo'natildi. Davom etish uchun emailingizni tasdiqlang.`
-                })
+                // res.render('verify', {
+                //     message_start: `Hurmatli ${user.name}, sizning `,
+                //     email: user.email,
+                //     message_end: `pochtangizga emailni tasdiqlash uchun link jo'natildi. Davom etish uchun emailingizni tasdiqlang.`
+                // })
+
+                res.redirect('/users/login')
+                console.log(`http://localhost:5656/users/verify/${user._id}`);
             }
-            await mail(email, "Iltimos emailingizni tasdiqlang", "Tasdiqlash uchun link:", `<a href="http://localhost:7889/users/verify/${user._id}">Tasdiqlash</a>`)
+            // await mail(email, "Iltimos emailingizni tasdiqlang", "Tasdiqlash uchun link:", `<a href="http://localhost:7889/users/verify/${user._id}">Tasdiqlash</a>`)
 
 
         } catch (error) {
